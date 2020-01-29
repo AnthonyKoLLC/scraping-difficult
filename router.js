@@ -6,6 +6,8 @@ router.post('/scraping', async (req, res) => {
     const username = body.username //'104716652'
     const password = body.password //'vbp197111'
     const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
     await page.goto('https://www.scotiabank.cl/login/personas/');
