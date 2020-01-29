@@ -6,11 +6,6 @@ router.post('/scraping', async (req, res) => {
     const username = body.username //'104716652'
     const password = body.password //'vbp197111'
     const browser = await puppeteer.launch({
-        headless: true, // The browser is visible
-        ignoreHTTPSErrors: true,
-        args:[
-            '--start-maximized' // you can also use '--start-fullscreen'
-        ]
     });
     const page = await browser.newPage();
     await page.goto('https://www.scotiabank.cl/login/personas/');
@@ -34,12 +29,12 @@ router.post('/scraping', async (req, res) => {
             })
         }  
         
-        result = await getData();
+        const result = await getData();
         res.send({
             success: 1,
             data: result
         })
-    }, 10000)
+    }, 15000)
 })
 
 module.exports = router;
